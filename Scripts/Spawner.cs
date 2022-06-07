@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
         {
             // Spawn the gameObject at the spawners current position and rotation
             GameObject projectileGameObject = Instantiate(spawnPrefab, transform.position, transform.rotation, null);
-
+            projectileGameObject.AddComponent<Ballet>();
             // reset the time until nextSpawn
             nextSpawn = 0f;
         }
