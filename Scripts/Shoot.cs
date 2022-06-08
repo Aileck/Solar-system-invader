@@ -28,7 +28,6 @@ public class Shoot : MonoBehaviour
     {
         chargeTimer -= Time.deltaTime;
         if (chargeTimer < 0) {
-            Debug.Log("ww");
             chargePercentage += 0.005f;
             charge.value = chargePercentage;
             chargeTimer = CHARGE_TIME;
@@ -47,7 +46,18 @@ public class Shoot : MonoBehaviour
             projectileGameObject.AddComponent<Ballet>();
             projectileGameObject.gameObject.tag = "Player_Bullet";
             bullet--;
+            Destroy(projectileGameObject,60);
             //projectileGameObject.transform.position  = Vector3.MoveTowards(,sun.transform.position, )
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Ale");
+        if (collision.gameObject.tag == "Planet_Bullet")
+        {
+            hp--;
+            Destroy(collision.gameObject);
         }
     }
 }

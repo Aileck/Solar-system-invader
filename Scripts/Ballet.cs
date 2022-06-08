@@ -23,4 +23,11 @@ public class Ballet : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, sun.transform.position, step);
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {;
+        if (collision.gameObject.GetComponent<Planet>() != null) {
+            collision.gameObject.GetComponent<Planet>().collision();
+        }
+    }
 }
