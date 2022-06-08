@@ -8,14 +8,23 @@ public class PlanetBullet : MonoBehaviour
     public Transform destination;
     public Vector3 destination3D;
 
-    public bool isSun = false;
+    public float distance;
+    public bool follow = false;
+
+    public float followDistance = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(isSun)
+
+        try
+        {
             destination = GameObject.FindGameObjectWithTag("Player").gameObject.transform;
-        else
             destination3D = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
+        }
+        catch (System.Exception e) {
+        
+        }
     }
 
     // Update is called once per frame
@@ -23,9 +32,34 @@ public class PlanetBullet : MonoBehaviour
     {
         var step = projectileSpeed * Time.deltaTime; // calculate distance to move
 
-        if(isSun)
-            transform.position = Vector3.MoveTowards(transform.position, destination.position, step);
-        else
-            transform.position = Vector3.MoveTowards(transform.position, destination3D, step);
+
+        try
+        {
+            if (follow)
+            {
+                distance = Vector3.Distance(transform.position, destination.position);
+
+                if (distance <= followDistance)
+                {
+                    destination3D = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position;
+                    follow = false;
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, destination.position, step);
+
+                }
+
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, destination3D, step);
+                if (transform.position == destination3D)
+                    Destroy(this.gameObject);
+            }
+        }
+        catch (MissingReferenceException e) {
+            
+        }
     }
 }

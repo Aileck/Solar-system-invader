@@ -22,19 +22,26 @@ public class RotateAround : MonoBehaviour {
 		// RotateAround takes three arguments, first is the Vector to rotate around
 		// second is a vector that axis to rotate around
 		// third is the degrees to rotate, in this case the speed per second
-		if (controlMode)
+		try
 		{
-			if (Input.GetKey("right"))
+			if (controlMode)
+			{
+				if (Input.GetKey("right"))
+				{
+					transform.RotateAround(target.transform.position, target.transform.up, speed * Time.deltaTime);
+				}
+				else if (Input.GetKey("left"))
+				{
+					transform.RotateAround(target.transform.position, target.transform.up, -speed * Time.deltaTime);
+				}
+			}
+			else
 			{
 				transform.RotateAround(target.transform.position, target.transform.up, speed * Time.deltaTime);
 			}
-			else if (Input.GetKey("left"))
-			{
-				transform.RotateAround(target.transform.position, target.transform.up, -speed * Time.deltaTime);
-			}
 		}
-		else {
-			transform.RotateAround(target.transform.position, target.transform.up, speed * Time.deltaTime);
+		catch (MissingReferenceException e) {
+		
 		}
 	}
 }

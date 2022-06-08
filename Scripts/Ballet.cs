@@ -19,15 +19,21 @@ public class Ballet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var step = projectileSpeed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, sun.transform.position, step);
-
+        try
+        {
+            var step = projectileSpeed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, sun.transform.position, step);
+        }
+        catch (MissingReferenceException E) {
+            //Do nothing
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
-    {;
+    {
         if (collision.gameObject.GetComponent<Planet>() != null) {
             collision.gameObject.GetComponent<Planet>().collision();
+            Destroy(this.gameObject);
         }
     }
 }

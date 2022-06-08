@@ -26,7 +26,7 @@ public class PlanetShoot : MonoBehaviour
             // Spawn the gameObject at the spawners current position and rotation
             GameObject projectileGameObject = Instantiate(spawnPrefab, transform.position, transform.rotation, null);
             if (this.gameObject.tag == "Sun") {
-                projectileGameObject.GetComponent<PlanetBullet>().isSun = true;
+                projectileGameObject.GetComponent<PlanetBullet>().follow = true;
             }
             // reset the time until nextSpawn
             nextSpawn = 0f;

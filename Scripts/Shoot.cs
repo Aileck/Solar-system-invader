@@ -8,9 +8,12 @@ public class Shoot : MonoBehaviour
 {
     private static float CHARGE_TIME = 0.01f;
 
+    public GameObject destroyParticle;
     public GameObject shootPrefab = null;
-    int hp = 5;
-    int bullet = 3;
+
+    public int hp = 10;
+    public int bullet = 3;
+
     float chargeTimer = CHARGE_TIME;
     float chargePercentage = 0;
 
@@ -26,9 +29,12 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hp <= 0) {
+            Destroy(this.gameObject);
+        }
         chargeTimer -= Time.deltaTime;
         if (chargeTimer < 0) {
-            chargePercentage += 0.005f;
+            chargePercentage += 0.007f;
             charge.value = chargePercentage;
             chargeTimer = CHARGE_TIME;
 
@@ -58,6 +64,9 @@ public class Shoot : MonoBehaviour
         {
             hp--;
             Destroy(collision.gameObject);
+            GameObject efect = Instantiate(destroyParticle, transform.position, transform.rotation, null);
+            efect.transform.localScale += new Vector3(3f, 3f, 3f);
+            Destroy(efect, 3);
         }
     }
 }
