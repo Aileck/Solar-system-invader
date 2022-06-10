@@ -14,7 +14,7 @@ Base task:
 My extension:
 <ul>
 <li>1. Player can act as a space invader.</li>
-<li>2. Player can shot at the planets.</li>
+<li>2. Player can shot at planets.</li>
 <li>3. Planets will fight back.</li>
 </ul>
 
