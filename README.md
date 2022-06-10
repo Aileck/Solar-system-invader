@@ -18,6 +18,10 @@ My extension:
 <li>3. Planets will fight back.</li>
 </ul>
 
+<h1>Solar System Invader</h1>
+<u>
+  Credits: Aileck (qykuzehibiki@gmail.com)
+</u>
 <h3>Game Description</h3>
 <img src='https://user-images.githubusercontent.com/61742408/172733717-3af20b4f-f74a-473e-82ca-ec5cc5849675.png'>
 You will can act as a space invader and your mission is to destroy the sun.
