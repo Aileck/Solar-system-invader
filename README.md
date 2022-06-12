@@ -76,7 +76,7 @@ Shot and avoid bullets!<br>
   
    <tr>
      <td>Purple bullet</td>
-     <td>Automatically follow you</td>
+     <td>Automatically follows you</td>
   </tr>
 </table>
 
